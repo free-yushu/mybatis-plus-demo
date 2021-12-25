@@ -28,7 +28,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("dev")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { TestDataSourceConfig.class, TestMybatisPlusConfiguration.class })
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class }, scanBasePackages = {"com.tojaoomy.payment"})
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class }, scanBasePackages = {"com.tojaoomy"})
 public class ProfileDevApplicationTest {
 
     private static MockConfig mockConfig = new MockConfig()
@@ -40,15 +40,18 @@ public class ProfileDevApplicationTest {
     public void accountExistsTest() {
     }
 
+    /**
+     * 测试自动执行SQL
+     */
     @Test
-    @Sql(statements = "insert into t_order_complaint_flow_mapping (deleted, flow_id, flow_detail_id, is_active_flow, flow_status) values  (0, 0, 0, 0, 'init');")
-    public void testSqlInsert() {
+    @Sql(statements = "INSERT INTO t_order ( ctime, mtime, deleted, order_id, version ) VALUES ( '2021-12-25 19:26:02', '2021-12-25 19:26:02', 34, 'zfN4h', 1259 );")
+    public void testSqlInsertOrder() {
 
     }
 
     @Test
     public void testInsertOrder() {
-        JMockData.mock(OrderDO.class).insert();
+        JMockData.mock(OrderDO.class).setId(null).insert();
     }
 
     @Test

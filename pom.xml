@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.6.RELEASE</version>
+        <version>2.6.1</version>
         <relativePath/>
     </parent>
     <groupId>org.tojaoomy</groupId>
@@ -25,10 +25,11 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spring.boot.version>2.0.6.RELEASE</spring.boot.version>
+        <spring.boot.version>2.6.1</spring.boot.version>
         <shardingsphere.version>4.1.1</shardingsphere.version>
         <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
         <junit.jupiter.version>5.3.2</junit.jupiter.version>
+        <spring.test.version>5.3.13</spring.test.version>
     </properties>
 
     <dependencyManagement>
@@ -166,7 +167,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>5.1.14.RELEASE</version>
+                <version>${spring.test.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
