@@ -1,4 +1,4 @@
-package com.tojaoomy.test;
+package com.tojaoomy.demo.infra.config;
 
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.tojaoomy.demo.infra.config.LocalDateTimeTypeHandler;
-import com.tojaoomy.demo.infra.config.MyMetaObjectHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
@@ -43,18 +41,18 @@ import java.util.List;
  * @date 2021/9/2
  */
 @Slf4j
-@Profile("test")
+@Profile("!test")
 @Configuration("mybatisPlusConfiguration")
 @MapperScan(basePackages = {"com.tojaoomy.demo.infra.mapper"})
 @PropertySource(value = {"classpath:config/shardingsphere.properties", "file:${CONF_PATH}/shardingsphere.properties"}, ignoreResourceNotFound = true)
-public class TestMybatisPlusConfiguration {
+public class MybatisPlusConfiguration {
 
     @Value("${spring.profiles.active}")
     private String env;
 
 
     @Bean(name = "paymentSqlSessionFactory")
-    public SqlSessionFactory sqlSessionFactory(@Qualifier("embeddedDataSource") DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(@Qualifier("shardingDataSource") DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         Resource[] resources = this.resolveMapperLocations();
@@ -74,14 +72,13 @@ public class TestMybatisPlusConfiguration {
             configuration.setLogImpl(StdOutImpl.class);
         }
         GlobalConfig globalConfig = GlobalConfigUtils.getGlobalConfig(configuration);
-
         globalConfig.setMetaObjectHandler(new MyMetaObjectHandler());
         bean.setConfiguration(configuration);
         return bean.getObject();
     }
 
     @Bean(name = "paymentTransactionManager")
-    public DataSourceTransactionManager transactionManager(@Qualifier("embeddedDataSource") DataSource dataSource) {
+    public DataSourceTransactionManager transactionManager(@Qualifier("shardingDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 

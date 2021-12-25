@@ -2,7 +2,7 @@ package com.tojaoomy.test;
 
 import com.alibaba.fastjson.JSON;
 import com.github.jsonzou.jmockdata.MockConfig;
-import com.tojaoomy.demo.dataobject.OrderDO;
+import com.tojaoomy.demo.infra.dataobject.OrderDO;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @Sql(scripts = "/h2_sql/delete.sql")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { TestDataSourceConfig.class, TestMybatisPlusConfiguration.class })
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class }, scanBasePackages = {"com.tojaoomy.payment"})
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class }, scanBasePackages = {"com.tojaoomy.demo"})
 public class ProfileTestApplicationTest {
 
     private static MockConfig mockConfig = new MockConfig()
