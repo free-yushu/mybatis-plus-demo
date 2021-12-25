@@ -1,7 +1,7 @@
 package com.tojaoomy.demo.domain.order.mapping;
 
-import com.tojaoomy.demo.domain.order.OrderAggregation;
 import com.tojaoomy.demo.domain.BaseMapping;
+import com.tojaoomy.demo.domain.order.OrderAggregation;
 import com.tojaoomy.demo.infra.dataobject.OrderDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

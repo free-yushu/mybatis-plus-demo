@@ -9,3 +9,6 @@ mybatis-plus集成SpringBoot演示
 - 配置本地user.email `git config --local user.email "tojaoomy@foxmail.com" `
 - 配置Idea ![idea-github-setting](idea-github-setting.png)
 - 左上角添加 github账号登录
+
+# 本地接口访问
+http://localhost/doc.html

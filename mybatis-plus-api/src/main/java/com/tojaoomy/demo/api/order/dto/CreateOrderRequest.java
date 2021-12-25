@@ -1,12 +1,12 @@
 package com.tojaoomy.demo.api.order.dto;
 
 import com.tojaoomy.demo.api.dto.BaseRequest;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.With;
 import lombok.experimental.Accessors;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import net.sf.oval.constraint.NotBlank;
 import net.sf.oval.constraint.NotNull;
 

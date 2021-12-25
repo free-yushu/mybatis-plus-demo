@@ -19,11 +19,6 @@ import lombok.experimental.Accessors;
 public class ResultEntity<T> {
 
     /**
-     * 请求流水号(游戏后端历史的规范,下划线分割)
-     */
-    private String request_id;
-
-    /**
      * 请求流水号
      */
     private String requestId;
@@ -55,7 +50,6 @@ public class ResultEntity<T> {
 
     public static ResultEntity buildSuccess(String requestId) {
         return new ResultEntity()
-                .withRequest_id(requestId)
                 .withRequestId(requestId)
                 .withCode(ResultStatusEnum.SUCCESS.getCode())
                 .withMsg(ResultStatusEnum.SUCCESS.getMessage());
@@ -63,7 +57,6 @@ public class ResultEntity<T> {
 
     public static ResultEntity of(String requestId, String code, String message) {
         return new ResultEntity()
-                .withRequest_id(requestId)
                 .withRequestId(requestId)
                 .withCode(code)
                 .withMsg(message);
@@ -71,7 +64,6 @@ public class ResultEntity<T> {
 
     public static ResultEntity of(String requestId, ResultStatusEnum resultStatusEnum) {
         return new ResultEntity()
-                .withRequest_id(requestId)
                 .withRequestId(requestId)
                 .withCode(resultStatusEnum.getCode())
                 .withMsg(resultStatusEnum.getMessage());
@@ -79,7 +71,6 @@ public class ResultEntity<T> {
 
     public static ResultEntity buildParameterMissing(String requestId, String parameterName) {
         return new ResultEntity()
-                .withRequest_id(requestId)
                 .withRequestId(requestId)
                 .withCode(ResultStatusEnum.PARAMETER_MISSING.getCode())
                 .withMsg(ResultStatusEnum.PARAMETER_MISSING.getFullMessage(parameterName));

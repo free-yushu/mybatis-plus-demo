@@ -1,12 +1,12 @@
 package com.tojaoomy.demo.domain.order;
 
 import com.tojaoomy.demo.domain.order.repository.IOrderRepository;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.With;
 import lombok.experimental.Accessors;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
  * @author 玉书

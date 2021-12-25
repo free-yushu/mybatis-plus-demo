@@ -1,14 +1,13 @@
 package com.tojaoomy.demo.starter.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.tojaoomy.demo.api.enums.ResultStatusEnum;
 import com.tojaoomy.demo.api.order.dto.CreateOrderRequest;
 import com.tojaoomy.demo.api.support.ResultEntity;
 import com.tojaoomy.demo.application.order.service.IOrderService;
-import com.tojaoomy.demo.infra.dataobject.OrderDO;
-import com.tojaoomy.demo.infra.mapper.OrderMapper;
 import com.tojaoomy.demo.starter.validate.ParamValidate;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/order")
+@Api(value = "订单服务", tags = "Order控制器")
 public class OrderController {
 
     @Autowired
@@ -29,6 +29,7 @@ public class OrderController {
 
     @ParamValidate
     @RequestMapping("/create")
+    @ApiOperation("创建订单")
     public ResultEntity createOrder(CreateOrderRequest request) {
         try {
             return orderService.createOrder(request);

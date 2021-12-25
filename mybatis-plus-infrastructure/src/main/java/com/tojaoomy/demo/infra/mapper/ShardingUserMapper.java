@@ -1,7 +1,7 @@
 package com.tojaoomy.demo.infra.mapper;
 
-import com.tojaoomy.demo.infra.dataobject.ShardingUserDO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.tojaoomy.demo.infra.dataobject.ShardingUserDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
