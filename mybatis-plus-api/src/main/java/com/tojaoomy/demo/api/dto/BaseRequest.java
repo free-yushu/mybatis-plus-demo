@@ -1,5 +1,6 @@
 package com.tojaoomy.demo.api.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class BaseRequest {
      */
     @NotNull(message = "requestId不能为null")
     @NotBlank(message = "requestId不能为空")
+    @ApiModelProperty(value = "请求流水号", dataType = "string", required = true)
     private String requestId;
 
 }
