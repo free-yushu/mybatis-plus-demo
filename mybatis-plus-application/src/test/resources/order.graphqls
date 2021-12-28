@@ -1,0 +1,20 @@
+schema {
+    query: ComposeQuery
+}
+
+type ComposeQuery {
+    order(orderId:String) : Order
+    user(id:Long) : User
+}
+
+type Order {
+    orderId:String!
+    productName:String
+    money:Float
+}
+
+type User {
+    id:Long!
+    name:String
+    age:Int
+}
