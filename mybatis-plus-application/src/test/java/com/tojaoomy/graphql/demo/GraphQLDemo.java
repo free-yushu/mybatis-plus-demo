@@ -17,6 +17,11 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * https://github.com/graphql-dotnet/graphql-dotnet/issues/565   不能定义多个Query，使用extend
+ * https://juejin.cn/post/7020216021206335524
+ * https://juejin.cn/post/6844903992292540423#heading-5
+ */
 public class GraphQLDemo {
 
     /***
@@ -52,19 +57,19 @@ public class GraphQLDemo {
 
     public static RuntimeWiring createRuntimeWiring() {
         return RuntimeWiring.newRuntimeWiring()
-                .type("ComposeQuery", typeWiring -> typeWiring
+                .type("RootQuery", typeWiring -> typeWiring
                         .dataFetcher("user", environment -> {
                             Long id = environment.getArgument("id");
                             return new User(id, "yushu_" + System.currentTimeMillis(), 15);
                         })
                 )
-                .type("ComposeQuery", typeWiring -> typeWiring
+                .type("RootQuery", typeWiring -> typeWiring
                         .dataFetcher("order_", environment -> {
                             String orderId = environment.getArgument("orderId");
                             return new Order(orderId, "Apple 12", new BigDecimal(22));
                         })
                 )
-                .type("ComposeQuery", typeWiring -> typeWiring
+                .type("RootQuery", typeWiring -> typeWiring
                         .dataFetcher("test", environment -> {
                             return "hello world";
                         })
@@ -74,7 +79,7 @@ public class GraphQLDemo {
 
     private static String loadFiles() {
         StringBuilder builder = new StringBuilder();
-        List<String> files = Arrays.asList("schema.graphqls", "order.graphqls", "user.graphqls","test.graphqls");
+        List<String> files = Arrays.asList("schema.graphqls","order.graphqls","user.graphqls","test.graphqls");
         files.stream().forEach(file -> {
             try {
                 builder.append(FileUtils.readFileToString(new ClassPathResource(file).getFile())).append("\n");
@@ -87,10 +92,7 @@ public class GraphQLDemo {
 
     public static void main(String[] args) throws IOException {
 
-//        读取Schema文件
-        String fileName = "order.graphqls";
-        String content = readFile(fileName);
-        content = loadFiles();
+        String content = loadFiles();
 //        创建注册器
         TypeDefinitionRegistry typeDefinitionRegistry = createTypeDefinitionRegistry(content);
 
@@ -103,8 +105,8 @@ public class GraphQLDemo {
 //      使用query查询
 //        String query = "{order(orderId:1){productName}}";
 //      String query = "{user(id:1){age}}";
-//        String query = "{user(id:1){age},order_(orderId:\"1234\"){productName}}";
-        String query = "{test}";
+//        String query = "{test}";
+        String query = "{user(id:1){age},order_(orderId:\"1234\"){productName},test}";
         System.out.println(JSON.toJSONString(query, true));
         ExecutionResult execute = graphQL.execute(query);
         System.out.println(JSON.toJSONString(execute.getData(), true));

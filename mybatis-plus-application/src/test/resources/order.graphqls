@@ -1,8 +1,5 @@
-
-type ComposeQuery {
+extend type RootQuery {
     order_(orderId:String) : Order
-    user(id:Long) : User
-    test : String
 }
 
 type Order {
@@ -10,3 +7,5 @@ type Order {
     productName:String
     money:Float
 }
+
+

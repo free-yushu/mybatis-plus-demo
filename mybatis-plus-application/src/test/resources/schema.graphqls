@@ -1,5 +1,6 @@
 schema {
-    query: ComposeQuery
-    query: UserQuery
-    query: TestQuery
+    query: RootQuery
+}
+type RootQuery {
+
 }

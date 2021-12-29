@@ -1,4 +1,4 @@
-type UserQuery {
+extend type RootQuery {
     user(id:Long) : User
 }
 
