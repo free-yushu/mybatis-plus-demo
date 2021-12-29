@@ -14,6 +14,8 @@ mybatis-plus集成SpringBoot演示
 http://localhost/doc.html
 
 # graphql本地访问
+http://localhost/graphiql
+
 ## maven依赖
 <dependency>
     <groupId>com.graphql-java</groupId>
@@ -28,3 +30,11 @@ mac启动应用
 ## 官方文档
 https://graphql.org/learn/  
 https://graphql.cn/learn/schema/
+
+## 学习资料
+https://www.graphql-java.com/tutorials/getting-started-with-spring-boot  
+https://www.howtographql.com/basics/0-introduction/  
+别名 https://graphql.cn/learn/queries/#aliases  
+代码生成 https://www.graphql-code-generator.com/plugins/java 
+订阅 https://www.graphql-java.com/documentation/subscriptions   
+生成JSON Schema https://www.npmjs.com/package/graphql-2-json-schema
