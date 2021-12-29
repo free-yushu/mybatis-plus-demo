@@ -8,10 +8,14 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class GraphQLDemo {
 
@@ -55,12 +59,30 @@ public class GraphQLDemo {
                         })
                 )
                 .type("ComposeQuery", typeWiring -> typeWiring
-                        .dataFetcher("order", environment -> {
+                        .dataFetcher("order_", environment -> {
                             String orderId = environment.getArgument("orderId");
                             return new Order(orderId, "Apple 12", new BigDecimal(22));
                         })
                 )
+                .type("ComposeQuery", typeWiring -> typeWiring
+                        .dataFetcher("test", environment -> {
+                            return "hello world";
+                        })
+                )
                 .build();
+    }
+
+    private static String loadFiles() {
+        StringBuilder builder = new StringBuilder();
+        List<String> files = Arrays.asList("schema.graphqls", "order.graphqls", "user.graphqls","test.graphqls");
+        files.stream().forEach(file -> {
+            try {
+                builder.append(FileUtils.readFileToString(new ClassPathResource(file).getFile())).append("\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return builder.toString();
     }
 
     public static void main(String[] args) throws IOException {
@@ -68,7 +90,7 @@ public class GraphQLDemo {
 //        读取Schema文件
         String fileName = "order.graphqls";
         String content = readFile(fileName);
-
+        content = loadFiles();
 //        创建注册器
         TypeDefinitionRegistry typeDefinitionRegistry = createTypeDefinitionRegistry(content);
 
@@ -81,7 +103,8 @@ public class GraphQLDemo {
 //      使用query查询
 //        String query = "{order(orderId:1){productName}}";
 //      String query = "{user(id:1){age}}";
-      String query = "{user(id:1){age},order(orderId:\"1234\"){productName}}";
+//        String query = "{user(id:1){age},order_(orderId:\"1234\"){productName}}";
+        String query = "{test}";
         System.out.println(JSON.toJSONString(query, true));
         ExecutionResult execute = graphQL.execute(query);
         System.out.println(JSON.toJSONString(execute.getData(), true));

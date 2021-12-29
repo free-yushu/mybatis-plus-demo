@@ -30,6 +30,9 @@
         <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
         <junit.jupiter.version>5.3.2</junit.jupiter.version>
         <spring.test.version>5.3.13</spring.test.version>
+        <graphiql-spring-boot-starter.version>5.0.2</graphiql-spring-boot-starter.version>
+        <graphql-java-spring-boot-starter-webmvc.version>1.0</graphql-java-spring-boot-starter-webmvc.version>
+        <graphql-java.version>11.0</graphql-java.version>
     </properties>
 
     <dependencyManagement>
@@ -195,10 +198,29 @@
             </dependency>
             <dependency>
                 <groupId>com.graphql-java</groupId>
-                <artifactId>graphql-java</artifactId>
-                <version>11.0</version>
+                <artifactId>graphiql-spring-boot-starter</artifactId>
+                <version>${graphiql-spring-boot-starter.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
+                <version>${graphql-java-spring-boot-starter-webmvc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java</artifactId>
+                <version>${graphql-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-spring-boot-starter</artifactId>
+                <version>5.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-java-tools</artifactId>
+                <version>5.2.4</version>
+            </dependency>
             <!--io操作工具包-->
             <dependency>
             <groupId>org.apache.commons</groupId>

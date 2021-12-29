@@ -10,5 +10,21 @@ mybatis-plus集成SpringBoot演示
 - 配置Idea ![idea-github-setting](idea-github-setting.png)
 - 左上角添加 github账号登录
 
-# 本地接口访问
+# Rest本地接口访问
 http://localhost/doc.html
+
+# graphql本地访问
+## maven依赖
+<dependency>
+    <groupId>com.graphql-java</groupId>
+    <artifactId>graphiql-spring-boot-starter</artifactId>
+    <version>5.0.2</version>
+</dependency>
+就可以在 /graphiql 里看到，但这只适用于 graphql 接口在 /graphql 的默认情况，如果有调整就还需要独立客户端。
+## 安装 graphql-playground
+`https://github.com/graphql/graphql-playground/releases`
+mac启动应用
+
+## 官方文档
+https://graphql.org/learn/  
+https://graphql.cn/learn/schema/

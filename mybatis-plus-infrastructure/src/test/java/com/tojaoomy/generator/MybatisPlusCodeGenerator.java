@@ -35,9 +35,17 @@ public class MybatisPlusCodeGenerator {
         ));
     }
 
+    public static GeneratorDataSourceConfig createSchool() {
+        return GeneratorDataSourceConfigFactory.createSchool().setTableNames(Arrays.asList(
+                "teacher",
+                "student"
+        ));
+    }
+
     public static void main(String[] args) {
-        dataSourceGenerator(createShardingUser());
-        dataSourceGenerator(createTradeOrder());
+//        dataSourceGenerator(createShardingUser());
+//        dataSourceGenerator(createTradeOrder());
+        dataSourceGenerator(createSchool());
     }
 
     private static void dataSourceGenerator(GeneratorDataSourceConfig generatorDataSourceConfig) {
@@ -48,7 +56,7 @@ public class MybatisPlusCodeGenerator {
                         generatorDataSourceConfig.getPassword())
                         .typeConvert(new MySqlTypeConvertCustom()))
                 .globalConfig(builder -> {
-                    builder.author("玉书") // 设置作者
+                    builder.author("MybatisPlusGenerator") // 设置作者
                             .commentDate("yyyy-MM-dd")
 //                            .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
@@ -56,7 +64,7 @@ public class MybatisPlusCodeGenerator {
                             .outputDir(projectPath + "/src/main/java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.tojaoomy.demo") // 设置父包名
+                    builder.parent("com.tojaoomy.demo.infra") // 设置父包名
 //                            .moduleName("system") // 设置父包模块名
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "/src/main/resources/mapper"))
                             .entity("dataobject")
