@@ -15,6 +15,11 @@ http://localhost/doc.html
 
 # graphql本地访问
 http://localhost/graphiql
+## query
+![query](query.png)
+## mutation
+注意下面的变量
+![mutation](mutation.png)
 
 ## maven依赖
 <dependency>
