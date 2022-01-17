@@ -10,8 +10,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,7 +29,7 @@ public class OrderController {
     private IOrderService orderService;
 
     @ParamValidate
-    @PostMapping("/create")
+    @RequestMapping(value = "/create",method = {RequestMethod.POST, RequestMethod.GET})
     @ApiOperation("创建订单")
     public ResultEntity createOrder(CreateOrderRequest request) {
         try {
@@ -38,5 +38,17 @@ public class OrderController {
             log.error("<<< createOrder error on params:[{}]", JSON.toJSONString(request), e);
             return ResultEntity.of(request.getRequestId(), ResultStatusEnum.SYSTEM_INTERNAL_ERROR);
         }
+    }
+
+    /**
+     * 压测接口
+     * @param request
+     * @return
+     */
+    @ParamValidate
+    @RequestMapping(value = "/pressure/create",method = {RequestMethod.POST, RequestMethod.GET})
+    @ApiOperation("创建订单")
+    public ResultEntity createOrderPressure(CreateOrderRequest request) {
+        return orderService.createOrder(request);
     }
 }
