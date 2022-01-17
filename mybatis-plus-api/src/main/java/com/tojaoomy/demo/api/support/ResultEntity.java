@@ -1,11 +1,14 @@
 package com.tojaoomy.demo.api.support;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tojaoomy.demo.api.enums.ResultStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.With;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDateTime;
 
 /**
  * @author 玉书
@@ -39,7 +42,8 @@ public class ResultEntity<T> {
     /**
      * 时间戳
      */
-    private long timestamp = System.currentTimeMillis();
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private LocalDateTime timestamp = LocalDateTime.now();
 
     /**
      * 返回数据

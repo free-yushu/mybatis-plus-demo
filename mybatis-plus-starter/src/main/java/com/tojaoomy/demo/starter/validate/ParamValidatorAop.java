@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ import static com.tojaoomy.demo.api.enums.ResultStatusEnum.PARAMETER_MISSING;
 @Configuration
 public class ParamValidatorAop {
 
+    @Autowired
+    ParamValidator paramValidator;
+
     @Pointcut("@annotation(com.tojaoomy.demo.starter.validate.ParamValidate)")
     public void execute() {}
 
@@ -39,7 +43,7 @@ public class ParamValidatorAop {
         if(args != null && args.length > 0) {
             for(Object arg : args) {
                 //校验参数
-                List<String> validate = ParamValidator.validate(arg);
+                List<String> validate = paramValidator.validate(arg);
                 if(CollectionUtils.isNotEmpty(validate)) {
                     if(returnType != null && returnType.equals(ResponseEntity.class)) {
                         return new ResponseEntity(ResultEntity.of("", PARAMETER_MISSING.getCode(), validate.toString()), HttpStatus.OK);

@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.With;
-import net.sf.oval.constraint.NotBlank;
-import net.sf.oval.constraint.NotNull;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author 玉书
@@ -22,8 +22,7 @@ public class BaseRequest {
     /**
      * 请求流水号
      */
-    @NotNull(message = "requestId不能为null")
-    @NotBlank(message = "requestId不能为空")
+    @NotBlank
     @ApiModelProperty(value = "请求流水号", dataType = "string", required = true)
     private String requestId;
 

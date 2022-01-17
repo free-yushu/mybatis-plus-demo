@@ -1,15 +1,14 @@
 package com.tojaoomy.demo.api.order.dto;
 
 import com.tojaoomy.demo.api.dto.BaseRequest;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.With;
 import lombok.experimental.Accessors;
-import net.sf.oval.constraint.NotBlank;
-import net.sf.oval.constraint.NotNull;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author 玉书
@@ -23,9 +22,7 @@ import net.sf.oval.constraint.NotNull;
 @NoArgsConstructor
 public class CreateOrderRequest extends BaseRequest {
 
-    @NotNull(message = "orderId不能为null")
-    @NotBlank(message = "orderId不能为空")
-    @ApiModelProperty(value = "订单号", dataType = "string", required = true)
+    @NotBlank
     private String orderId;
 
 }
