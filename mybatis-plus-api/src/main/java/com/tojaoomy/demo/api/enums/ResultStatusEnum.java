@@ -28,6 +28,8 @@ public enum ResultStatusEnum {
      */
     REPEATED_SUBMISSION("2002","重复提交"),
 
+    REQUEST_SIGN_NOT_VALID("4001","签名错误"),
+
     /**
      * 系统内部错误
      */

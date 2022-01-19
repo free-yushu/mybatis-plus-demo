@@ -26,4 +26,18 @@ public class BaseRequest {
     @ApiModelProperty(value = "请求流水号", dataType = "string", required = true)
     private String requestId;
 
+    /**
+     * 签名key
+     */
+    private String appkey;
+
+    /**
+     * 请求时间
+     */
+    private Long ts;
+
+    /**
+     * 签名(md5)
+     */
+    private String sign;
 }

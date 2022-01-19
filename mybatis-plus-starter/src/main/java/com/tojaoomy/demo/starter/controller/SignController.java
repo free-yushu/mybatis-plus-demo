@@ -1,7 +1,7 @@
 package com.tojaoomy.demo.starter.controller;
 
 import com.tojaoomy.demo.api.support.ResultEntity;
-import com.tojaoomy.demo.infra.sign.config.SignProperties;
+import com.tojaoomy.demo.infra.sign.config.SignatureProperties;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SignController {
 
     @Autowired
-    private SignProperties signProperties;
+    private SignatureProperties signProperties;
 
     /**
      * @return
