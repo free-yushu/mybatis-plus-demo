@@ -109,4 +109,22 @@
             <artifactId>graphql-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>prd</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <excludes>
+                            <exclude>config/shardingsphere.properties</exclude>
+                            <exclude>config/signature.properties</exclude>
+                            <exclude>config/spy.properties</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
 </project>

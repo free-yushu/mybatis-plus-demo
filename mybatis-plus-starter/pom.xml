@@ -97,6 +97,28 @@
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.14.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>7.14.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.elasticsearch.client</groupId>
+                    <artifactId>elasticsearch-rest-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-client</artifactId>
+            <version>7.14.0</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
@@ -110,14 +132,7 @@
                         <directory>src/main/resources</directory>
                         <excludes>
                             <exclude>application.properties</exclude>
-                            <exclude>application.yml</exclude>
-                            <exclude>env.properties</exclude>
                             <exclude>logback-spring.xml</exclude>
-                            <exclude>config/jdbc.properties</exclude>
-                            <exclude>config/cos.properties</exclude>
-                            <exclude>config/rabbitmq.properties</exclude>
-                            <exclude>config/shardingsphere.properties</exclude>
-                            <exclude>config/sign.properties</exclude>
                         </excludes>
                     </resource>
                 </resources>
