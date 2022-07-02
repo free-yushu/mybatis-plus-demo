@@ -1,0 +1,20 @@
+# 定义一个查询类型
+extend type Query {
+    queryById(id: ID): Item
+}
+
+extend type Mutation {
+    updateName(param: Param): Item
+}
+
+# 定义项目字段
+type Item {
+    id: ID!
+    code: String!
+    name: String!
+}
+
+input Param {
+    id: ID!
+    name: String!
+}

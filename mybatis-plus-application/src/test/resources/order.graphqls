@@ -1,0 +1,11 @@
+extend type RootQuery {
+    order_(orderId:String) : Order
+}
+
+type Order {
+    orderId:String!
+    productName:String
+    money:Float
+}
+
+

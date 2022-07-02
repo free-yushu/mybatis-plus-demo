@@ -1,0 +1,6 @@
+schema {
+    query: RootQuery
+}
+type RootQuery {
+
+}
